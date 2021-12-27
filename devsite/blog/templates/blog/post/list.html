@@ -1,10 +1,10 @@
-{ % extends "blog/base.html" % }
+{% extends "blog/base.html" %}
 
-{ % block title % }My Developer Blog{ % endblock % }
+{% block title %}My Developer Blog{% endblock %}
 
 { % block content % }
     <h1>My Developer Blog</h1>
-    { % for post in posts % }
+    {% for post in posts %}
         <h2>
             <a href="{{ post.get_absolute_url }}">
                 {{ post.title }}
@@ -14,5 +14,5 @@
             Published {{ post.publish }} by {{ post.author }}
         </p>
         {{ post.body|truncatewords:30|linebreaks}}
-    { % endfor % }
+    {% endfor %}
 { % endblock % }
