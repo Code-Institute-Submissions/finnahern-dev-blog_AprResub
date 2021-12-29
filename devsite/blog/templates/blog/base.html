@@ -18,10 +18,10 @@
     <div id="sidebar">
         <span class="user">
             {% if request.user.is_authenticated %}
-                Welcome <a href="#">{{ request.user.username }}</a>,
-                <a href="#">Logout</a>
+                Welcome <a href="{% url 'blog:dashboard' %}">{{ request.user.username }}</a>,
+                <a href="{% url 'blog:logout' %}">logout</a>
             {% else %}
-                <a href="#">Login</a>
+                <a href="{% url 'blog:login' %}">Login</a>
             {% endif %}
         </span>      
     </div>
