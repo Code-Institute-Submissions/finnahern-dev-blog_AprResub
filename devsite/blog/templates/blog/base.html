@@ -16,8 +16,14 @@
         {% endblock %}
     </div>
     <div id="sidebar">
-        <h2>Dev blog</h2>
-        <p>Sample text for sidebar.</p>
+        <span class="user">
+            {% if request.user.is_authenticated %}
+                Welcome <a href="#">{{ request.user.username }}</a>,
+                <a href="#">Logout</a>
+            {% else %}
+                <a href="#">Login</a>
+            {% endif %}
+        </span>      
     </div>
 </body>
 </html>
