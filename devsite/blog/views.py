@@ -10,7 +10,7 @@ from .forms import LoginForm
 
 def post_list(request):
     """
-    Function to render the post_list homepage when called, 
+    Function to render the post_list homepage when called,
     including pagination to display 4 posts per page
     """
     object_list = Post.published.all()
@@ -28,7 +28,7 @@ def post_list(request):
                  'blog/post/list.html',
                  {'page': page,
                   'posts': posts})
-
+       
 
 def post_detail(request, year, month, day, post):
     """
@@ -66,6 +66,7 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, "blog/login.html", {"form": form})
+
 
 @login_required
 def dashboard(request):

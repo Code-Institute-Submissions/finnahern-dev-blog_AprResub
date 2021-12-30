@@ -31,13 +31,13 @@ CSRF_TRUSTED_ORIGINS = ['https://8000-aquamarine-herring-joe59x5e.ws-eu25.gitpod
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
