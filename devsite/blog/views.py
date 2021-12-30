@@ -77,7 +77,7 @@ def edit_post(request, year, month, day, post):
     if request.method == "POST":
         form = EditPostForm(request.POST, instance=post)
         if form.is_valid():
-            updated_post = form.save()
+            form.save()
             return render(request, "blog/post/detail.html", {"post": post})
     else:
         data = {"title" : post.title, "body": post.body}
