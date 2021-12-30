@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, EmptyPage,\
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, UserRegistrationForm
+from .forms import LoginForm, UserRegistrationForm, CreatePostForm
 
 
 def post_list(request):
@@ -32,7 +32,7 @@ def post_list(request):
 
 def post_detail(request, year, month, day, post):
     """
-    Function to render the post detail page when the user 
+    Function to render the post detail page when the user
     selects a specific blog post to view.
     """
     post = get_object_or_404(Post, slug=post,
@@ -41,6 +41,26 @@ def post_detail(request, year, month, day, post):
                                    publish__month=month,
                                    publish__day=day)
     return render(request, "blog/post/detail.html", {"post": post})
+
+
+def add_post(request):
+    """
+    Function to render add_post page and submit forms
+    to create new blog posts
+    """
+    if request.method == "POST":
+        form = CreatePostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.slug = new_post.title.lower().replace(" ", "-")
+            new_post.status = "published"
+            new_post = form.save()
+            post = new_post
+            return render(request, "blog/post/detail.html", {"post": post})
+    else:
+        form = CreatePostForm()
+    return render(request, "blog/post/add_post.html", {"form": form})
 
 
 def user_login(request):
@@ -71,7 +91,8 @@ def user_login(request):
 @login_required
 def dashboard(request):
     """
-    Function to render the dashboard template
+    Function to render the dashboard template, including a paginated
+    list of posts authored by the current user 
     """
     object_list = Post.published.filter(author=request.user)
     paginator = Paginator(object_list, 4) # 4 posts in each page
@@ -86,7 +107,7 @@ def dashboard(request):
         posts = paginator.page(paginator.num_pages)
     return render(request,
                 "blog/dashboard.html",
-                {'page': page,
+                {"page": page,
                 "posts": posts})
 
 

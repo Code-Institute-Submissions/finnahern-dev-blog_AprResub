@@ -16,6 +16,8 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     # user dashboard views
     path("dashboard/", views.dashboard, name="dashboard"),
+    # CRUD views for blog posts
+    path("add_post/", views.add_post, name="add_post"),
     # change password views
     path("password_change/",
         auth_views.PasswordChangeView.as_view(success_url="/password_change/done"),
