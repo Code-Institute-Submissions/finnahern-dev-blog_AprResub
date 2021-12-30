@@ -23,4 +23,6 @@ urlpatterns = [
     path("password_change/done/",
         auth_views.PasswordChangeDoneView.as_view(),
         name="password_change_done"),
+    # user registration views
+    path("register/", views.register, name="register")
 ]

@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, EmptyPage,\
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm
+from .forms import LoginForm, UserRegistrationForm
 
 
 def post_list(request):
@@ -70,6 +70,33 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+    """
+    Function to render the dashboard template
+    """
     return render(request,
                 "blog/dashboard.html",
                 {"section": "dashboard"})
+
+
+def register(request):
+    """
+    Function to register new user accounts.
+    """
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but don't save it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(
+                user_form.cleaned_data["password"])
+            # Save the user object
+            new_user.save()
+            return render(request,
+                        "blog/register_done.html",
+                        {"new_user": new_user})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request,
+                "blog/register.html",
+                {"user_form": user_form})
