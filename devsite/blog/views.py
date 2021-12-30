@@ -28,7 +28,7 @@ def post_list(request):
                  'blog/post/list.html',
                  {'page': page,
                   'posts': posts})
-       
+
 
 def post_detail(request, year, month, day, post):
     """

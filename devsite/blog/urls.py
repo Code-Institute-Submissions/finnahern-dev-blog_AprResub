@@ -18,7 +18,7 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     # change password views
     path("password_change/",
-        auth_views.PasswordChangeView.as_view(),
+        auth_views.PasswordChangeView.as_view(success_url="/password_change/done"),
         name="password_change"),
     path("password_change/done/",
         auth_views.PasswordChangeDoneView.as_view(),
