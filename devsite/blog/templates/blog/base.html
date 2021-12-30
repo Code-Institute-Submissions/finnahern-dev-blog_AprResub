@@ -16,6 +16,8 @@
         {% endblock %}
     </div>
     <div id="sidebar">
+        <a href="{% url 'blog:post_list' %}">< Back home</a>
+        <br>
         <span class="user">
             {% if request.user.is_authenticated %}
                 Welcome <a href="{% url 'blog:dashboard' %}">{{ request.user.username }}</a>,
