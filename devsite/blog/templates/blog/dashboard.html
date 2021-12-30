@@ -6,4 +6,19 @@
     <h1>Dashboard</h1>
     <p>Welcome to your dashboard.</p>
     <a href="{% url 'blog:password_change' %}">Change password</a>
+
+    <button >New post</button>
+    
+    {% for post in posts %}
+        <h2>
+            <a href="{{post.get_absolute_url}}">
+                {{ post.title }}
+            </a>
+        </h2>
+        <p class="date">
+            Published {{ post.publish }} by {{ post.author }}
+        </p>
+        {{ post.body|truncatewords:30|linebreaks}}
+    {% endfor %}
+    {% include "pagination.html" with page=posts %}
 {% endblock %}

@@ -16,9 +16,8 @@
         {% endblock %}
     </div>
     <div id="sidebar">
-        <a href="{% url 'blog:post_list' %}">< Back home</a>
-        <br>
-        <span class="user">
+        <a href="{% url 'blog:post_list' %}">< Back home</a> 
+        <div class="user">
             {% if request.user.is_authenticated %}
                 Welcome <a href="{% url 'blog:dashboard' %}">{{ request.user.username }}</a>,
                 <a href="{% url 'blog:logout' %}">logout</a>
@@ -26,7 +25,7 @@
                 <a href="{% url 'blog:login' %}">Login</a>
                 <a href="{% url 'blog:register' %}">Register</a>
             {% endif %}
-        </span>      
+        </div>      
     </div>
 </body>
 </html>
