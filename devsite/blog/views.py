@@ -85,6 +85,19 @@ def edit_post(request, year, month, day, post):
     return render(request, "blog/post/edit_post.html", {"form": form})
 
 
+def delete_post(request, year, month, day, post):
+    """
+    Function to delete existing posts from the
+    user's dashboard
+    """
+    post = get_object_or_404(Post, slug=post,
+                                   status="published",
+                                   publish__year=year,
+                                   publish__month=month,
+                                   publish__day=day)
+    # post.delete()
+    return dahsboard(request)
+
 def user_login(request):
     """
     Function to render and authenticate the user login form

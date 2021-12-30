@@ -39,10 +39,19 @@ class Post(models.Model):
         return reverse("blog:post_detail",
                        args=[self.publish.year,
                              self.publish.month,
-                             self.publish.day, self.slug])
+                             self.publish.day, 
+                             self.slug])
 
     def get_edit_url(self):
         return reverse("blog:edit_post",
                        args=[self.publish.year,
                              self.publish.month,
-                             self.publish.day, self.slug])
+                             self.publish.day, 
+                             self.slug])
+
+    def get_delete_url(self):
+        return reverse("blog:delete_post",
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.publish.day, 
+                             self.slug])

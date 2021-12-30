@@ -20,7 +20,7 @@
         </p>
         {{ post.body|truncatewords:30|linebreaks}}
         <a class="button edit" href="{{post.get_edit_url}}">Edit post</a><br>
-        <a class="button delete">Delete post</a>
+        <a class="button delete" href="{{post.get_delete_url}}">Delete post</a>
     {% endfor %}
     {% include "pagination.html" with page=posts %}
 {% endblock %}

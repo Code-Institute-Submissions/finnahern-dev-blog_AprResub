@@ -21,6 +21,9 @@ urlpatterns = [
     path("edit_post/<int:year>/<int:month>/<int:day>/<slug:post>/",
         views.edit_post,
         name="edit_post"),
+    path("delete_post/<int:year>/<int:month>/<int:day>/<slug:post>/",
+        views.delete_post,
+        name="delete_post"),
     # change password views
     path("password_change/",
         auth_views.PasswordChangeView.as_view(success_url="/password_change/done"),
