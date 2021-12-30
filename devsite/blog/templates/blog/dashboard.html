@@ -19,7 +19,7 @@
             Published {{ post.publish }} by {{ post.author }}
         </p>
         {{ post.body|truncatewords:30|linebreaks}}
-        <a class="button edit">Edit post</a><br>
+        <a class="button edit" href="{{post.get_edit_url}}">Edit post</a><br>
         <a class="button delete">Delete post</a>
     {% endfor %}
     {% include "pagination.html" with page=posts %}

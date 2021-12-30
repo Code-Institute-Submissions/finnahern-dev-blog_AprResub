@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post
 from django.core.paginator import Paginator, EmptyPage,\
     PageNotAnInteger
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, UserRegistrationForm, CreatePostForm
+from .models import Post
+from .forms import LoginForm, UserRegistrationForm, CreatePostForm,\
+    EditPostForm
 
 
 def post_list(request):
@@ -63,6 +64,27 @@ def add_post(request):
     return render(request, "blog/post/add_post.html", {"form": form})
 
 
+def edit_post(request, year, month, day, post):
+    """
+    Function to render edit_post page and submit forms
+    to edit existing blog posts
+    """
+    post = get_object_or_404(Post, slug=post,
+                                   status="published",
+                                   publish__year=year,
+                                   publish__month=month,
+                                   publish__day=day)
+    if request.method == "POST":
+        form = EditPostForm(request.POST, instance=post)
+        if form.is_valid():
+            updated_post = form.save()
+            return render(request, "blog/post/detail.html", {"post": post})
+    else:
+        data = {"title" : post.title, "body": post.body}
+        form = EditPostForm(initial=data)
+    return render(request, "blog/post/edit_post.html", {"form": form})
+
+
 def user_login(request):
     """
     Function to render and authenticate the user login form
@@ -92,7 +114,7 @@ def user_login(request):
 def dashboard(request):
     """
     Function to render the dashboard template, including a paginated
-    list of posts authored by the current user 
+    list of posts authored by the current user.
     """
     object_list = Post.published.filter(author=request.user)
     paginator = Paginator(object_list, 4) # 4 posts in each page

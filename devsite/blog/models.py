@@ -40,3 +40,9 @@ class Post(models.Model):
                        args=[self.publish.year,
                              self.publish.month,
                              self.publish.day, self.slug])
+
+    def get_edit_url(self):
+        return reverse("blog:edit_post",
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.publish.day, self.slug])
