@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['https://ms4-django-blog.herokuapp.com', 'localhost', 'https://8000-gray-echidna-7s7rwwax.ws-eu25.gitpod.io']
-CSRF_TRUSTED_ORIGINS = ['https://ms4-django-blog.herokuapp.com', 'https://8000-gray-echidna-7s7rwwax.ws-eu25.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://ms4-django-blog.herokuapp.com/', 'https://8000-gray-echidna-7s7rwwax.ws-eu25.gitpod.io']
 
 # Application definition
 
