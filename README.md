@@ -1,4 +1,4 @@
-## Student Developer Blog
+## Developer Blog
 
 [Link to deployed site.](https://ms4-django-blog.herokuapp.com/)
 
