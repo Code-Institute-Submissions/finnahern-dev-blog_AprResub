@@ -12,15 +12,21 @@ Flowchart of the site navigation
 
 - ### Custom data model for blog posts
 
+The main purpose of the site is to view and create blog posts and for this I needed a data model to use in the database. Below is the Post model used in the project. Each post instance features a title, slug, which is used to create the post's unique url, author, body, dates for when it's published, created and updated, and it's status, either "draft" or "published".
+
 ![Post data model](screenshots/post_model.PNG)
 
 - ### Functions for users to register for accounts, log in and out, and change their password
 
-- ### Sidebar confirming login status to user on all pages
+The site invites the user to register for an account and begin creating posts. This can be done quickly and easily using the site's registration, login and password change forms.
+
+- ### Sidebar
+
+The sidebar is visible on all pages of the site, confirming login status to user and allowing them to logout, or access their dashboard by clicking their username.
 
 ![Sidebar](screenshots/sidebar.PNG)
 
-- ### Homepage listing all blog posts
+- ### Homepage/Blog post list
 
 All posts are listed newest first. The page features pagination so if there are more than 4 posts in the database it will create secondary pages with navigation links. Each post on the list features the title of the post, which is a link to individual post's view page, the publish date and time, the author and a truncated preview of the first 30 words.
 
@@ -28,20 +34,43 @@ All posts are listed newest first. The page features pagination so if there are 
 
 - ### User dashboard
 
-The user's dashboard can be reached from any page of the site by clicking on the username in the sidebar. It's a lot like the homepage except it can only be accessed once the user has logged in. It's list only features posts belonging to the currently signed in user. From here the user can change their password, create a new post, and they can view, edit or delete one of their existing posts. Like the home page, the dashboard also features pagination for more than 4 posts.
+The user's dashboard can be reached from any page of the site by clicking on the username in the sidebar. If the user is not signed in and try to go straight to the dashboard url they will be redirected to the login page. 
+
+The dashboard is a lot like the homepage except it can only be accessed once the user has logged in. It's list only features posts belonging to the currently signed in user. From here the user can change their password, create a new post, and they can view, edit or delete one of their existing posts. Like the home page, the dashboard also features pagination for more than 4 posts.
 
 ![User dashboard](screenshots/dashboard.PNG)
+
+- ### Post view
+
+When the user clicks on the title of a post, either from the home page or from their dashboard where they are brought to the post view screen. Each post has a unique url generated using its created date and slug properties where this page is hosted. From here the user can read the full body of the post.
+
+![Post view](screenshots/post_view.PNG)
+
+- ### Full CRUD functionality for posts
+
+As mentioned above the dashboard completes the CRUD functionality for the user's own posts. From there they can create a new post or edit an existing one using a simple form, as well as delete
+
+![Post create form](screenshots/post_create.PNG)
 
 ## User stories
 
 ## Testing
 Bugs identified and fixed
+Password links/redirects not working - Changed urls from "login"/"logout" to "blog:login"/"blog/logout", 
+Password change going to django error instead of redirect. added success_url="/password_change/done") to PasswordChangeView
 
 Unresolved issues
+-Slugs
+-No defensive programming when deleting
 
-Validator testing
+- ### Validator testing
+The Pythin code was validated using the [Pep8](http://pep8online.com/) validator. The only errors returned were a number of "line too long" and "continuation line under-indented for visual indent" errors, that don't interfere with the program logic.
 
 Improvements to make
+
+-Custom stlying, Bootstrap or MAterlalize
+-Drafts
+-Plugins like summernote or crispy forms to improve UX for forms.
 
 ## Deployment
 

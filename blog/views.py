@@ -15,7 +15,7 @@ def post_list(request):
     including pagination to display 4 posts per page
     """
     object_list = Post.published.all()
-    paginator = Paginator(object_list, 4) # 4 posts in each page
+    paginator = Paginator(object_list, 4)  # 4 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
@@ -80,7 +80,7 @@ def edit_post(request, year, month, day, post):
             form.save()
             return render(request, "blog/post/detail.html", {"post": post})
     else:
-        data = {"title" : post.title, "body": post.body}
+        data = {"title": post.title, "body": post.body}
         form = EditPostForm(initial=data)
     return render(request, "blog/post/edit_post.html", {"form": form})
 
@@ -98,6 +98,7 @@ def delete_post(request, year, month, day, post):
     # post.delete()
     return dahsboard(request)
 
+
 def user_login(request):
     """
     Function to render and authenticate the user login form
@@ -112,7 +113,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse("Authenticated "\
+                    return HttpResponse("Authenticated "
                                         "successfully")
                 else:
                     return HttpResponse("Disabled account")
@@ -130,7 +131,7 @@ def dashboard(request):
     list of posts authored by the current user.
     """
     object_list = Post.published.filter(author=request.user)
-    paginator = Paginator(object_list, 4) # 4 posts in each page
+    paginator = Paginator(object_list, 4)  # 4 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
