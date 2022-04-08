@@ -29,10 +29,10 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['ms4-django-blog.herokuapp.com', 'https://ms4-django-blog.herokuapp.com', 'localhost', 'https://8000-gray-echidna-7s7rwwax.ws-eu25.gitpod.io']
-CSRF_TRUSTED_ORIGINS = ['ms4-django-blog.herokuapp.com', 'https://ms4-django-blog.herokuapp.com/', 'https://8000-gray-echidna-7s7rwwax.ws-eu25.gitpod.io']
+ALLOWED_HOSTS = ['https://ms4-django-blog.herokuapp.com', 'localhost', 'https://8000-finnahern-devblog-f22se79l2vd.ws-eu38.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://ms4-django-blog.herokuapp.com/', 'https://8000-finnahern-devblog-f22se79l2vd.ws-eu38.gitpod.io']
 
 # Application definition
 
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
+    # 'blog',
+    # 'user',
 ]
 
 MIDDLEWARE = [
@@ -138,5 +140,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_REDIRECT_URL = 'blog:dashboard'
-LOGIN_URL = 'blog:login'
-LOGOUT_URL = 'blog:logout'
+LOGIN_URL = 'user:login'
+LOGOUT_URL = 'user:logout'

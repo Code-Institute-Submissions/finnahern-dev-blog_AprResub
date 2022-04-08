@@ -61,7 +61,7 @@ I have manually tested a number of aspects of the program, particularly the elem
 Below I've detailed some of the bugs I encountered during development that have been fixed. Unfortunately there are some issues I became aware of that I was not able to resolve due to time contraints, these are also mentioned below.
 
 ### Bugs identified and fixed
-- Password links/redirects not working - The first version of the login/logout urls did not work properly. Django would throw an error whenever it tried to render a page featuring a link to them (which was every page due to the sidebar in the base.html template). This was resolved by changing the urls from "login"/"logout" to "blog:login"/"blog:logout".
+- Password links/redirects not working - The first version of the login/logout urls did not work properly. Django would throw an error whenever it tried to render a page featuring a link to them (which was every page due to the sidebar in the base.html template). This was resolved by changing the urls from "login"/"logout" to "user:login"/"user:logout".
 
 - When the user submitted the password change form Django would throw an error. Manually navigating back to the home page using the browser's address bar and trying to login again revealed that the password had been changed successfully, the issue was just with redirecting the user to the confirmation page afterwards. I resolved this by added the '(success_url="/password_change/done")' argument to the password change path in urls.py.
 

@@ -20,10 +20,10 @@
         <div class="user">
             {% if request.user.is_authenticated %}
                 Welcome <a href="{% url 'blog:dashboard' %}">{{ request.user.username }}</a>,
-                <a href="{% url 'blog:logout' %}">logout</a>
+                <a href="{% url 'user:logout' %}">logout</a>
             {% else %}
-                <a href="{% url 'blog:login' %}">Login</a>
-                <a href="{% url 'blog:register' %}">Register</a>
+                <a href="{% url 'user:login' %}">Login</a>
+                <a href="{% url 'user:register' %}">Register</a>
             {% endif %}
         </div>      
     </div>
