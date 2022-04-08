@@ -1,9 +1,9 @@
-{% extends "blog/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Developer Blog{% endblock %}
 
 {% block content %}
-    <h1>Developer Blog</h1>
+    <div class="header-container"></div>
     {% for post in posts %}
         <h2>
             <a href="{{post.get_absolute_url}}">

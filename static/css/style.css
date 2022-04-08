@@ -2,13 +2,35 @@
 Template stylesheet from Django 3 by example.
 */
 body { 
-    margin:0;
-    padding:0;
-    font-family:helvetica, sans-serif; 
+    /*margin:0;
+    padding:0; */
+    font-family: 'Roboto', sans-serif;
+}
+
+.header-container {
+    /* Set header container height so the body appears below the header, not behind it. */
+    margin-top: 75px; 
+}
+
+.logo-font {
+    color: #fff;
+}
+
+.logo-font > a {
+    color: #fff;
+    
+}
+
+.bg-blue {
+    background-color: #3B71A3;
+}
+
+.user {
+    color:#fff;
+    text-decoration: none;
 }
 
 a { 
-    color:#00abff;
     text-decoration:none; 
 }
 

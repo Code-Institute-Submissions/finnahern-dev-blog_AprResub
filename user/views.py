@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-# from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, UserRegistrationForm
 
 
@@ -27,7 +26,10 @@ def user_login(request):
                 return HttpResponse("Invalid login")
     else:
         form = LoginForm()
-    return render(request, "blog/login.html", {"form": form})
+
+    context = {"form": form}
+
+    return render(request, "user/login.html", context)
 
 
 def register(request):
@@ -45,10 +47,11 @@ def register(request):
             # Save the user object
             new_user.save()
             return render(request,
-                          "blog/register_done.html",
+                          "user/register_done.html",
                           {"new_user": new_user})
     else:
         user_form = UserRegistrationForm()
-    return render(request,
-                  "blog/register.html",
-                  {"user_form": user_form})
+
+    context = {"user_form": user_form}
+
+    return render(request, "user/register.html", context)
