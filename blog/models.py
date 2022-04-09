@@ -6,12 +6,11 @@ from django.urls import reverse
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
-        return super(PublishedManager,
-                self).get_queryset()\
-                    .filter(status='published')
+        return super(PublishedManager, self).get_queryset().filter(status='published')
 
 
 class Post(models.Model):
+    """Module docstring"""
     STATUS_CHOICES = (
         ("draft", "Draft"),
         ("published", "Published"),
@@ -36,22 +35,22 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
+        """Returns the unique url for each Post object"""
         return reverse("blog:post_detail",
-                       args=[self.publish.year,
-                             self.publish.month,
-                             self.publish.day,
-                             self.slug])
+                       args=[self.publish.year, self.publish.month,
+                             self.publish.day, self.publish.hour,
+                             self.publish.minute, self.slug])
 
     def get_edit_url(self):
+        """Returns the edit url for each Post object"""
         return reverse("blog:edit_post",
-                       args=[self.publish.year,
-                             self.publish.month,
-                             self.publish.day,
-                             self.slug])
+                       args=[self.publish.year, self.publish.month,
+                             self.publish.day, self.publish.hour,
+                             self.publish.minute, self.slug])
 
     def get_delete_url(self):
+        """Returns the delete url for each Post object"""
         return reverse("blog:delete_post",
-                       args=[self.publish.year,
-                             self.publish.month,
-                             self.publish.day,
-                             self.slug])
+                       args=[self.publish.year, self.publish.month,
+                             self.publish.day, self.publish.hour,
+                             self.publish.minute, self.slug])

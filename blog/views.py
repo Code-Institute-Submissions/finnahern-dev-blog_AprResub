@@ -28,16 +28,14 @@ def post_list(request):
                    'posts': posts})
 
 
-def post_detail(request, year, month, day, post):
+def post_detail(request, year, month, day, hour, minute, post):
     """
     Function to render the post detail page when the user
     selects a specific blog post to view.
     """
-    post = get_object_or_404(Post, slug=post,
-                             status="published",
-                             publish__year=year,
-                             publish__month=month,
-                             publish__day=day)
+    post = get_object_or_404(Post, slug=post, publish__year=year,
+                             publish__month=month, publish__day=day,
+                             publish__hour=hour, publish__minute=minute)
     return render(request, "blog/post/detail.html", {"post": post})
 
 
@@ -61,16 +59,14 @@ def add_post(request):
     return render(request, "blog/post/add_post.html", {"form": form})
 
 
-def edit_post(request, year, month, day, post):
+def edit_post(request, year, month, day, hour, minute, post):
     """
     Function to render edit_post page and submit forms
     to edit existing blog posts
     """
-    post = get_object_or_404(Post, slug=post,
-                             status="published",
-                             publish__year=year,
-                             publish__month=month,
-                             publish__day=day)
+    post = get_object_or_404(Post, slug=post, publish__year=year,
+                             publish__month=month, publish__day=day,
+                             publish__hour=hour, publish__minute=minute)
     if request.method == "POST":
         form = EditPostForm(request.POST, instance=post)
         if form.is_valid():
@@ -82,17 +78,19 @@ def edit_post(request, year, month, day, post):
     return render(request, "blog/post/edit_post.html", {"form": form})
 
 
-def delete_post(request, year, month, day, post):
+@login_required
+def delete_post(request, year, month, day, hour, minute, post):
     """
     Function to delete existing posts from the
     user's dashboard
     """
-    post = get_object_or_404(Post, slug=post,
-                             status="published",
-                             publish__year=year,
-                             publish__month=month,
-                             publish__day=day)
-    post.delete()
+    post = get_object_or_404(Post, slug=post, publish__year=year,
+                             publish__month=month, publish__day=day,
+                             publish__hour=hour, publish__minute=minute)
+
+    if request.user.username == post.author or request.user.is_superuser:
+        post.delete()
+
     return dashboard(request)
 
 
@@ -103,7 +101,7 @@ def dashboard(request):
     list of posts authored by the current user.
     """
     object_list = Post.published.filter(author=request.user)
-    paginator = Paginator(object_list, 8)  # 8 posts in each page
+    paginator = Paginator(object_list, 5)  # 5 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
