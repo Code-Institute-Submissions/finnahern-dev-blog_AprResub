@@ -81,13 +81,13 @@ def edit_post(request, year, month, day, hour, minute, post):
 @login_required
 def delete_post(request, year, month, day, hour, minute, post):
     """
-    Function to delete existing posts from the
-    user's dashboard
+    Function to delete existing posts
     """
     post = get_object_or_404(Post, slug=post, publish__year=year,
                              publish__month=month, publish__day=day,
                              publish__hour=hour, publish__minute=minute)
 
+    # Check if user is the post author or superuser before deleting.
     if request.user.username == post.author or request.user.is_superuser:
         post.delete()
 

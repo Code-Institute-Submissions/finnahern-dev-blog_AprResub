@@ -6,15 +6,11 @@ from django.urls import reverse
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
-        return super(PublishedManager, self).get_queryset().filter(status='published')
+        return super(PublishedManager, self).get_queryset()
 
 
 class Post(models.Model):
-    """Module docstring"""
-    STATUS_CHOICES = (
-        ("draft", "Draft"),
-        ("published", "Published"),
-    )
+    """Data model for blog posts"""
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date="publish")
     author = models.ForeignKey(User,
@@ -24,7 +20,6 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="draft")
     objects = models.Manager()
     published = PublishedManager()
 
