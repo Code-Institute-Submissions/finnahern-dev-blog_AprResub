@@ -1,16 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
-from blog.models import Post
 
 
 class LoginForm(forms.Form):
+    """Form to allow users to login"""
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
 
 class UserRegistrationForm(forms.ModelForm):
+    """Form to allow users to register a new account"""
     password = forms.CharField(label="Password",
-                                widget=forms.PasswordInput)
+                               widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repeat password",
                                 widget=forms.PasswordInput)
 
