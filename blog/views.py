@@ -9,10 +9,10 @@ from .forms import CreatePostForm, EditPostForm
 def post_list(request):
     """
     Function to render the post_list homepage when called,
-    including pagination to display 4 posts per page
+    including pagination to display 5 posts per page
     """
     object_list = Post.published.all()
-    paginator = Paginator(object_list, 4)  # 4 posts in each page
+    paginator = Paginator(object_list, 5)  # 5 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
