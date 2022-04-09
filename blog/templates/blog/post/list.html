@@ -1,19 +1,24 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block title %}Developer Blog{% endblock %}
 
 {% block content %}
     <div class="header-container"></div>
-    {% for post in posts %}
-        <h2>
-            <a href="{{post.get_absolute_url}}">
-                {{ post.title }}
-            </a>
-        </h2>
-        <p class="date">
-            Published {{ post.publish }} by {{ post.author }}
-        </p>
-        {{ post.body|truncatewords:30|linebreaks}}
-    {% endfor %}
+    <div class="row w-100">
+        <div class="container col-12 col-lg-8 mx-auto py-1">
+            {% for post in posts %}
+                <h2>
+                    <a href="{{post.get_absolute_url}}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p class="date text-muted">
+                    Published {{ post.publish|naturaltime }} by {{ post.author }}
+                </p>
+                {{ post.body|truncatewords:30|linebreaks}}
+            {% endfor %}
+        </div>
+    </div>
     {% include "pagination.html" with page=posts %}
 {% endblock %}

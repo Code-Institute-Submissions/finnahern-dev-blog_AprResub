@@ -9,7 +9,7 @@ body {
 
 .header-container {
     /* Set header container height so the body appears below the header, not behind it. */
-    margin-top: 75px; 
+    margin-top: 40px; 
 }
 
 .logo-font {
@@ -60,7 +60,6 @@ h2 {
 }
 
 p.date { 
-    color:#ccc;
     font-family: georgia, serif;
     font-size: 12px;
     font-style: italic; 

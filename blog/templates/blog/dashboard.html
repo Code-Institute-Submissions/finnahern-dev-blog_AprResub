@@ -3,24 +3,29 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <h1>Dashboard</h1>
-    <p>Welcome to your dashboard.</p>
-    <a href="{% url 'user:password_change' %}">Change password</a>
-    <br>
-    <a class="button create" href="{% url 'blog:add_post' %}">New post</a>
-    
-    {% for post in posts %}
-        <h2>
-            <a href="{{post.get_absolute_url}}">
-                {{ post.title }}
-            </a>
-        </h2>
-        <p class="date">
-            Published {{ post.publish }} by {{ post.author }}
-        </p>
-        {{ post.body|truncatewords:30|linebreaks}}
-        <a class="button edit" href="{{post.get_edit_url}}">Edit post</a><br>
-        <a class="button delete" href="{{post.get_delete_url}}">Delete post</a>
-    {% endfor %}
+    <div class="header-container"></div>
+    <div class="row w-100">
+        <div class="container col-12 col-lg-8 mx-auto mt-3 py-1">
+            <h2>{{ user.username }}'s dashboard</h2>
+            <a href="{% url 'user:password_change' %}">Change password</a>
+            <br>
+            <a class="button create" href="{% url 'blog:add_post' %}">New post</a>
+            
+            {% for post in posts %}
+                <h2>
+                    <a href="{{post.get_absolute_url}}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <hr class="my-1">
+                <p class="date text-muted">
+                    Published {{ post.publish }} by {{ post.author }}
+                </p>
+                {{ post.body|truncatewords:30|linebreaks}}
+                <a class="button edit" href="{{post.get_edit_url}}">Edit post</a><br>
+                <a class="button delete" href="{{post.get_delete_url}}">Delete post</a>
+            {% endfor %}
+        </div>
+    </div>
     {% include "pagination.html" with page=posts %}
 {% endblock %}

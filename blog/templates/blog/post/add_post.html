@@ -3,11 +3,16 @@
 {% block title %}Add new post{% endblock %}
 
 {% block content %}
-    <h1>Add new blog post</h1>
+    <div class="header-container"></div>
+    <div class="row w-100">
+        <div class="container col-12 col-lg-8 mx-auto mt-3 py-1">
+            <h2>Add new blog post</h2>
 
-    <form method="POST">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Create post"></p>
-    </form>
+            <form method="POST">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <p><input type="submit" value="Create post"></p>
+            </form>
+        </div>
+    </div>
 {% endblock %}

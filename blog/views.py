@@ -103,7 +103,7 @@ def dashboard(request):
     list of posts authored by the current user.
     """
     object_list = Post.published.filter(author=request.user)
-    paginator = Paginator(object_list, 4)  # 4 posts in each page
+    paginator = Paginator(object_list, 8)  # 8 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)

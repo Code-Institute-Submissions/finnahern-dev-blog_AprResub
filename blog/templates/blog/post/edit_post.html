@@ -3,11 +3,16 @@
 {% block title %}Edit post{% endblock %}
 
 {% block content %}
-    <h1>Edit blog post</h1>
+    <div class="header-container"></div>
+    <div class="row w-100">
+        <div class="container col-12 col-lg-8 mx-auto mt-3 py-1">
+            <h2>Edit blog post</h2>
 
-    <form method="POST">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Edit post"></p>
-    </form>
+            <form method="POST">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <p><input type="submit" value="Edit post"></p>
+            </form>
+        </div>
+    </div>
 {% endblock %}

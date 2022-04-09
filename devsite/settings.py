@@ -30,8 +30,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://ms4-django-blog.herokuapp.com', 'localhost', 'https://8000-finnahern-devblog-f22se79l2vd.ws-eu38.gitpod.io']
-CSRF_TRUSTED_ORIGINS = ['https://ms4-django-blog.herokuapp.com/', 'https://8000-finnahern-devblog-f22se79l2vd.ws-eu38.gitpod.io']
+ALLOWED_HOSTS = [
+    'localhost',
+    'ms4-django-blog.herokuapp.com',
+    'https://ms4-django-blog.herokuapp.com/',
+    'https://8000-finnahern-devblog-f22se79l2vd.ws-eu39.gitpod.io',
+    ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://ms4-django-blog.herokuapp.com/',
+    'https://8000-finnahern-devblog-f22se79l2vd.ws-eu39.gitpod.io',
+    ]
 
 # Application definition
 
@@ -42,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.humanize',
     'blog',
     'user',
 ]
