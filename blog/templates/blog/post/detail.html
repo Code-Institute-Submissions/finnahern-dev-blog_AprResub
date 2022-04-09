@@ -1,16 +1,34 @@
 {% extends "base.html" %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block extra_title %}{{ post.title }} - {% endblock %}
 
 {% block content %}
     div class="header-container"></div>
     <div class="row w-100">
-        <div class="container col-12 col-lg-8 mx-auto mt-5 py-1">   
+        <div class="container col-12 col-lg-8 mx-auto mt-5 py-1">  
+            <div class="mt-auto" id="post-buttons">
+                {% if request.user.is_superuser or post.author == request.user %}
+                    <!-- Delete button -->
+                    <a href="{{post.get_delete_url}}" class="btn btn-outline border float-end" id="delete-post-button" 
+                    onclick="return confirm('Are you sure you want to delete this post? This cannot be undone.')">
+                        <span class="icon"><i class="fas fa-trash"></i></span>
+                        <span class="font-weight-bold font-color-danger">Delete Post</span>
+                    </a>
+                {% endif %}
+                {% if post.author == request.user %}
+                    <!-- Edit button -->
+                    <a href="{{post.get_edit_url}}" class="btn btn-outline border float-end" id="edit-post-button">
+                        <span class="icon"><i class="fa-solid fa-pen-to-square"></i></span>
+                        <span class="font-weight-bold">Edit Post</span>
+                    </a>
+                {% endif %}   
+            </div>     
+            <!-- Post body -->
             <h1>{{ post.title }}</h1>
             <p class="date text-muted">
                 Published {{ post.publish }} by {{ post.author }}
             </p>
-            {{ post.body|linebreaks}}
+            {{ post.body|linebreaks}} 
         </div>
     </div>
     

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load humanize %}
 
-{% block title %}Dashboard{% endblock %}
+{% block extra_title %}Dashboard - {% endblock %}
 
 {% block content %}
     <div class="header-container"></div>
@@ -9,7 +10,10 @@
             <h2>{{ user.username }}'s dashboard</h2>
             <a href="{% url 'user:password_change' %}">Change password</a>
             <br>
-            <a class="button create" href="{% url 'blog:add_post' %}">New post</a>
+            <a href="{% url 'blog:add_post' %}" class="btn btn-outline border float-end">
+                <span class="icon"><i class="fas fa-plus"></i></span>
+                <span class="font-weight-bold">Add Post</span>
+            </a>
             
             {% for post in posts %}
                 <h2>
@@ -19,11 +23,9 @@
                 </h2>
                 <hr class="my-1">
                 <p class="date text-muted">
-                    Published {{ post.publish }} by {{ post.author }}
+                    Published {{ post.publish|naturaltime }} by {{ post.author }}
                 </p>
                 {{ post.body|truncatewords:30|linebreaks}}
-                <a class="button edit" href="{{post.get_edit_url}}">Edit post</a><br>
-                <a class="button delete" href="{{post.get_delete_url}}">Delete post</a>
             {% endfor %}
         </div>
     </div>
