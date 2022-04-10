@@ -2,7 +2,7 @@
 
 [Link to deployed site.](https://ms4-django-blog.herokuapp.com/)
 
-A resubmission of my Django blog project. This document details the changes made to the project since the first submission. The unchanged, original Readme.md can be [found here](https://github.com/finnahern/dev-blog/blob/main/originalREADME.md).
+A resubmission of my Django blog project. This document details the changes made to the project since the first submission. The unchanged, original Readme.md can be [found here](https://github.com/finnahern/dev-blog/blob/main/documentation/originalREADME.md).
 
 The updated documentation below will detail changes made since the original version of the site.
 
@@ -37,7 +37,7 @@ As the site administrator I want to be able to:
 
 ## Manual testing
 
-I have manually tested each feature of the site throughout development as well as a final pass after the code was completed. Full details of which can be found [here]().
+I have manually tested each feature of the site throughout development as well as a final pass after the code was completed. Full details of which can be found [here](https://github.com/finnahern/dev-blog/blob/main/documentation/Tests.md).
 
 ## Validation
 

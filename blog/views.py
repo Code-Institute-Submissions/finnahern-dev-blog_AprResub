@@ -39,6 +39,7 @@ def post_detail(request, year, month, day, hour, minute, post):
     return render(request, "blog/post/detail.html", {"post": post})
 
 
+@login_required
 def add_post(request):
     """
     Function to render add_post page and submit forms
@@ -72,10 +73,12 @@ def edit_post(request, year, month, day, hour, minute, post):
         if form.is_valid():
             form.save()
             return render(request, "blog/post/detail.html", {"post": post})
+            # Only the post author can edit a post.
+            # if request.user.username == post.author:    
     else:
         data = {"title": post.title, "body": post.body}
         form = EditPostForm(initial=data)
-    return render(request, "blog/post/edit_post.html", {"form": form})
+    return render(request, "blog/post/edit_post.html", {"form": form, "post": post})
 
 
 @login_required
