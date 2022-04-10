@@ -123,3 +123,21 @@ The same error as above.
 This actually works fine as editing a post does not change the slug. This could potentially cause problems if there was an error in the title that the author doesn't want a visible record of.
 
 <br>
+
+#### ACTION: 
+Attempt to access the edit post form via url without signing in.
+#### EXPECTED RESULT:
+The form is not rendered, the user is shown a message that they are not authorised.
+#### ACTUAL RESULT:
+As expected.
+
+<br>
+
+#### ACTION: 
+Attempt to access the delete post url without signing in.
+#### EXPECTED RESULT:
+The user is prompted to login
+#### ACTUAL RESULT:
+As expected.
+
+<br>
