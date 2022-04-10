@@ -49,6 +49,10 @@ As part of this revision of the original project I have implemented an imperfect
 
 ## Known issues
 
+- Creating a new blog post with non-alphanumeric characters in the title creates an invalid url and causes Django to throw an error when attempting to load any page that features a link to the new post. The only way to fix it is by deleting the post via the admin backend. This is a critical error that renders the site inoperable. Defensive programming that checks for invalid symbols before submitting the form could circumvent this, or else to have the add_post function remove them from the slug before saving the new object.
+
+- Editing a post does not change it's slug and therefore doesn't change it's url. This means that any errors in the title will be permanently visible to anyone viewing that post unless the author deletes in and creates a new one.
+
 # Deployment
 
 The [same deployment](https://github.com/finnahern/dev-blog/blob/main/originalREADME.md#deployment) described in the original readme was used for this revision. No changes were needed.
